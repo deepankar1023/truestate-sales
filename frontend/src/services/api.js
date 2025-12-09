@@ -1,7 +1,8 @@
 import axios from "axios"
 import { toQueryString } from "../utils/queryString.js"
 
-const BASE_URL = "http://localhost:5000"
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 
 export const fetchSales = async (query) => {
   const qs = toQueryString(query)
