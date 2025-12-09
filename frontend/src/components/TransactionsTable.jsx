@@ -20,6 +20,19 @@ const TransactionsTable = ({ rows }) => {
   const handleCopy = (value) => {
     navigator.clipboard.writeText(formatPhone(value));
   };
+  const formatTableDate = (isoString) => {
+    if (!isoString) return "";
+    // Create a Date object from the ISO string
+    const dateObj = new Date(isoString);
+
+    // Get the date parts
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const day = String(dateObj.getDate()).padStart(2, '0');
+
+    // Return in YYYY-MM-DD format
+    return `${year}-${month}-${day}`;
+    };
 
   return (
     <div className="table-scroll-container">
@@ -45,7 +58,7 @@ const TransactionsTable = ({ rows }) => {
           {rows.map((row, index) => (
             <tr key={`${row.transactionId}-${index}`}>
               <td className="text-gray">{row.transactionId}</td>
-              <td className="text-gray">{row.date}</td>
+              <td className="text-gray">{formatTableDate(row.date)}</td>
               <td className="text-gray">{row.customerId}</td>
               <td className="text-gray">{row.customerName}</td>
               

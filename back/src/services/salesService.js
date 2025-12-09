@@ -50,11 +50,21 @@ export const getSales = async (query) => {
     if (ageMax) matchStage.age.$lte = Number(ageMax)
   }
 
-  if (dateFrom || dateTo) {
-    matchStage.date = {}
-    if (dateFrom) matchStage.date.$gte = new Date(dateFrom)
-    if (dateTo) matchStage.date.$lte = new Date(dateTo)
+
+if (dateFrom || dateTo) {
+  matchStage.date = {};
+  
+  if (dateFrom) {
+    matchStage.date.$gte = new Date(dateFrom); 
   }
+  
+  if (dateTo) {
+   
+    const dateToObj = new Date(dateTo);
+    dateToObj.setDate(dateToObj.getDate() + 1); 
+    matchStage.date.$lt = dateToObj; 
+  }
+}
 
   
   const summaryPromise = Sale.aggregate([

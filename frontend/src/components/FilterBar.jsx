@@ -40,32 +40,32 @@ const FilterBar = ({
   };
 
   const handleDatePresetChange = value => {
-    const patch = { datePreset: value };
-    const today = new Date();
-    if (!value) {
-      patch.dateFrom = "";
-      patch.dateTo = "";
-    } else if (value === "today") {
-      const d = formatDate(today);
-      patch.dateFrom = d;
-      patch.dateTo = d;
-    } else if (value === "last7") {
-      const to = formatDate(today);
-      const fromDate = new Date(today);
-      fromDate.setDate(fromDate.getDate() - 7);
-      const from = formatDate(fromDate);
-      patch.dateFrom = from;
-      patch.dateTo = to;
-    } else if (value === "last30") {
-      const to = formatDate(today);
-      const fromDate = new Date(today);
-      fromDate.setDate(fromDate.getDate() - 30);
-      const from = formatDate(fromDate);
-      patch.dateFrom = from;
-      patch.dateTo = to;
-    }
-    onChange(patch);
-  };
+     const patch = { datePreset: value };
+     const today = new Date();
+     if (!value) {
+       patch.dateFrom = "";
+       patch.dateTo = "";
+     } else if (value === "today") {
+       const d = formatDate(today);
+       patch.dateFrom = d;
+       patch.dateTo = d;
+     } else if (value === "Last 2 Years") {
+       const to = formatDate(today);
+       const fromDate = new Date(today);
+       fromDate.setFullYear(fromDate.getFullYear() - 2); 
+       const from = formatDate(fromDate);
+       patch.dateFrom = from;
+       patch.dateTo = to;
+     } else if (value === "Last 5 Years") { 
+       const to = formatDate(today);
+       const fromDate = new Date(today);
+       fromDate.setFullYear(fromDate.getFullYear() - 5); 
+       const from = formatDate(fromDate);
+       patch.dateFrom = from;
+       patch.dateTo = to;
+     }
+     onChange(patch);
+   };
 
   const handleSortChange = e => {
     const value = e.target.value;
@@ -190,8 +190,8 @@ const FilterBar = ({
         >
           <option value="">Date</option>
           <option value="today">Today</option>
-          <option value="last7">Last 7 days</option>
-          <option value="last30">Last 30 days</option>
+          <option value="last7">Last 2 Years</option>
+          <option value="last30">Last 5 Years</option>
         </select>
       </div>
 
