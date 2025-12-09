@@ -1,0 +1,15 @@
+# Node
+node_modules
+.env
+
+# Build folders
+dist
+build
+
+# Logs
+*.log
+
+# IDE configs
+.vscode
+back/src/data/sales.csv
+back/src/data/*.csv
