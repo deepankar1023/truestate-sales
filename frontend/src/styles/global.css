@@ -1,0 +1,552 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    sans-serif;
+}
+
+html,
+body , #root{
+  height: 100%;
+}
+
+body {
+  background: #ffffff;
+}
+
+/* ---------- LAYOUT ---------- */
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ---------- SIDEBAR (VAULT STYLE) ---------- */
+
+.sidebar {
+  width: 240px;
+  background: #f5f5f7;
+  padding: 16px 12px;
+  border-right: 1px solid #e5e7eb;
+  position: relative;
+}
+
+/* top vault switcher */
+.sidebar-tenant {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px 10px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  margin-bottom: 16px;
+}
+
+.tenant-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #111827, #4f46e5);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.tenant-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tenant-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.tenant-user {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.tenant-caret {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* floating avatar bubble */
+.sidebar-avatar {
+  position: absolute;
+  right: -10px;
+  top: 60px;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #4f46e5, #ec4899);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(15, 23, 42, 0.25);
+}
+
+/* nav stack */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* top-level links: Dashboard, Nexus, Intake */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  color: #4b5563;
+  text-align: left;
+}
+
+.sidebar-link-icon {
+  font-size: 16px;
+}
+
+.sidebar-link-label {
+  flex: 1;
+}
+
+.sidebar-link.active {
+  background: #ffffff;
+  color: #111827;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+/* cards: Services & Invoices */
+.sidebar-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px 10px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.sidebar-card + .sidebar-card {
+  margin-top: 8px;
+}
+
+.sidebar-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.sidebar-card-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: none;
+}
+
+.sidebar-card-caret {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.sidebar-card-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* sub-links inside cards */
+.sidebar-sub-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  color: #4b5563;
+  text-align: left;
+}
+
+.sidebar-sub-icon {
+  font-size: 14px;
+  width: 18px;
+  text-align: center;
+}
+
+.sidebar-sub-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* red dot on "Closed" */
+.sidebar-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #ef4444;
+}
+
+.sidebar-sub-link.active {
+  background: #f3f4ff;
+  color: #111827;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* ---------- SUMMARY CARDS ---------- */
+
+.summary-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 0;
+}
+
+.summary-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  flex: 0 0 220px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.summary-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.summary-value {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* ---------- FILTERS + SEARCH (FIGMA BUTTON STYLE) ---------- */
+
+.filters-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+/* left side: reset + filter boxes + sort pill */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+/* reset button – same height & radius, plain icon */
+.filter-reset {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: 1px solid #D1D5DB;
+  background: #f3f3f3; /* Gray/90 bg */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: #3a3a47; /* Gray/20 text */
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "SF Pro Text", sans-serif;
+}
+
+.filter-reset:hover {
+  background: #e5e5e8;
+}
+
+/* generic filter pill – matches Figma button (Hug width, 28px height, radius 4, padding 8, gap 8) */
+.filter-pill {
+  position: relative;
+  min-width: 108px; /* base width; grows with text (Hug) */
+  height: 28px;
+  border-radius: 4px;
+  background: #f3f3f3; /* Gray/90 */
+  display: flex;
+  align-items: center;
+  padding: 0 24px 0 8px; /* left padding 8, extra right for arrow */
+  cursor: pointer;
+}
+
+/* select text inside pill */
+.filter-select {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "SF Pro Text", sans-serif;
+  font-size: 14px;       /* Figma size */
+  line-height: 21px;     /* Figma line-height */
+  font-weight: 400;      /* Regular */
+  color: #3a3a47;        /* Gray/20 */
+  width: 100%;
+  appearance: none;
+  cursor: pointer;
+  padding-right: 4px;
+}
+
+.filter-select::-ms-expand {
+  display: none;
+}
+
+/* little v arrow on right */
+.filter-pill::after {
+  content: "▾";
+  font-size: 12px;
+  color: #3a3a47;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* sort pill – same look, wider */
+.filter-sort-pill {
+  position: relative;
+  min-width: 180px;
+  height: 28px;
+  border-radius: 4px;
+  background: #f3f3f3;
+  display: flex;
+  align-items: center;
+  padding: 0 24px 0 8px;
+  cursor: pointer;
+}
+
+.filter-sort-label {
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "SF Pro Text", sans-serif;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+  color: #3a3a47;
+  margin-right: 4px;
+}
+
+.filter-sort-pill::after {
+  content: "▾";
+  font-size: 12px;
+  color: #3a3a47;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* ---------- SEARCH ---------- */
+
+.search-bar {
+  min-width: 260px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 6px 10px;
+  height: 28px;
+  border-radius: 4px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "SF Pro Text", sans-serif;
+  background: #ffffff;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: #111827;
+}
+
+/* ---------- TABLE & PHONE CELL ---------- */
+.table-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.table-wrapper {
+  flex: 1; /* allow it to stretch */
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  margin: 0 auto;
+  width: 1236px;
+}
+
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.transactions-table thead tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.transactions-table th,
+.transactions-table td {
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.transactions-table th {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "SF Pro Text", sans-serif;
+}
+
+.transactions-table td {
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "SF Pro Text", sans-serif;
+}
+.transactions-table tbody tr {
+  height: 48px; /* adjustable: try 52px for chunkier rows */
+}
+
+
+.transactions-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+/* phone cell with copy icon */
+.phone-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.copy-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: none;
+  background: #f2f2f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.copy-btn:hover {
+  background: #e4e4ea;
+}
+
+/* ---------- PAGINATION ---------- */
+
+.pagination-row {
+  width: 1236px;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center; /* Centers the blocks horizontally */
+  align-items: center;
+  gap: 10px;               /* Space between blocks */
+  width: 100%;             /* Ensures container takes full width to allow centering */
+  margin-top: 10px;        Optional: adds space above the pagination
+}
+
+.pagination-btn {
+  /* Box Shape */
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;      /* Rounded corners like the image */
+  border: none;
+  
+  /* Text Styling */
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "SF Pro Text", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  /* Inactive State (Light Gray) */
+  background-color: #f3f4f6;
+  color: #374151;
+  /* padding-left: 8px;
+  padding-bottom: 6px;
+  padding-right: 8px;
+  padding-top: 6px; */
+}
+
+.pagination-btn:hover {
+  background-color: #e5e7eb; /* Slightly darker gray on hover */
+}
+
+/* Active State (Black with White text) */
+.pagination-btn.active {
+  background-color: #111827; /* Dark Black/Grey */
+  color: #ffffff;
+}
+
+/* ---------- PLACEHOLDER / COUNT ---------- */
+
+.placeholder {
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.placeholder.error {
+  color: #b91c1c;
+}
+
+.count-text {
+  font-size: 12px;
+  color: #6b7280;
+}

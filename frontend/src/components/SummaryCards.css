@@ -1,0 +1,47 @@
+.summary-row {
+  display: flex;
+  gap: 12px;         /* Reduced gap between cards */
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.summary-card {
+  background-color: #ffffff;
+  border: 1px solid #CFD9E6;
+  border-radius: 6px;        /* Slightly smaller radius */
+  padding: 12px 16px;        /* Reduced padding for a tighter look */
+  min-width: 160px;          /* Smaller minimum width */
+  width: fit-content;        /* Only takes necessary space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+
+/* Container for Label + Icon */
+.summary-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px; /* Less space between label and number */
+}
+
+.summary-label {
+  font-size: 13px;    /* Smaller font for label */
+  font-weight: 500;
+  color: #4B5563;     /* Slightly darker gray */
+}
+
+.info-icon {
+  width: 14px;        /* Smaller icon size */
+  height: 14px;
+  opacity: 0.6;
+  cursor: help;
+}
+
+.summary-value {
+  font-size: 18px;    /* Smaller font for the value */
+  font-weight: 700;
+  color: #111827;     /* Almost black */
+  line-height: 1.2;
+}

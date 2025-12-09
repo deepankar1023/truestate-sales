@@ -1,0 +1,104 @@
+/* --- Container with Hidden Scrollbar --- */
+.table-scroll-container {
+  width: 100%;
+  overflow-x: auto; /* Enables horizontal scroll */
+  
+  /* Firefox */
+  scrollbar-width: none; 
+  
+  /* IE 10+ */
+  -ms-overflow-style: none; 
+}
+
+/* Chrome, Safari, Edge */
+.table-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- Table Structure --- */
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  font-family: IBM Plex Sans; /* Ensure you have a clean sans-serif font */
+  white-space: nowrap; /* Prevents text wrapping, forces scrolling */
+}
+
+/* --- Header Styling --- */
+.transactions-table thead th {
+  background-color: #F9FAFB; /* Light gray header bg */
+  color: #6B7280;            /* Muted gray text */
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize; /* "Transaction ID" etc. */
+  text-align: left;
+  padding: 16px 24px;        /* Generous padding */
+  border-bottom: 1px solid #E5E7EB;
+}
+
+/* --- Row Styling --- */
+.transactions-table tbody tr {
+  border-bottom: 1px solid #F3F4F6;
+  height: 60px; /* Fixed height to match spacious look */
+}
+
+.transactions-table tbody td {
+  padding: 0 24px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.transactions-table tbody tr:hover {
+  background-color: #F9FAFB; /* Slight hover effect */
+}
+
+/* --- Specific Text Styles to match Image --- */
+.text-gray {
+  color: #6B7280;
+}
+
+.text-dark-medium {
+  color: #111827;
+  font-weight: 500;
+}
+
+.text-dark-bold {
+  color: #111827;
+  font-weight: 600;
+}
+
+/* --- Phone Cell & Icon --- */
+.phone-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between number and icon */
+  color: #374151;
+}
+
+.copy-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #9CA3AF; /* Icon color */
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.copy-btn:hover {
+  color: #6B7280;
+}
+
+/* --- Column Width Control (Optional) --- */
+/* This ensures columns are wide enough to force the scroll after 'Quantity' */
+.transactions-table th, 
+.transactions-table td {
+  min-width: 120px; /* Minimum width for standard columns */
+}
+
+/* Give more space to Name and ID columns if needed */
+.transactions-table th:nth-child(4), /* Customer Name */
+.transactions-table td:nth-child(4) {
+  min-width: 160px;
+}

@@ -1,0 +1,56 @@
+/* --- 1. Positioning (For the Header Row in App.jsx) --- */
+.header-row {
+  display: flex;
+  justify-content: space-between; /* Pushes Title to left, Search to right */
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #fff; /* Assuming white header background */
+  border-bottom: 1px solid #E5E7EB; /* Optional separator */
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+/* --- 2. Search Bar Appearance (Matches Image) --- */
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  background-color: #F3F4F6; /* Light gray background */
+  border: 1px solid #E5E7EB; /* Subtle border */
+  border-radius: 6px;        /* Rounded corners */
+  padding: 8px 12px;
+  width: 320px;              /* Fixed width or use 'min-width' */
+  transition: all 0.2s ease;
+}
+
+.search-bar-container:focus-within {
+  background-color: #fff;
+  border-color: #8B5CF6; /* Highlight color (Purple) on focus */
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
+}
+
+.search-icon-wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+.search-input-field {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  color: #374151; /* Dark text */
+  font-family: inherit;
+}
+
+.search-input-field::placeholder {
+  color: #9CA3AF; /* Light gray placeholder text */
+}

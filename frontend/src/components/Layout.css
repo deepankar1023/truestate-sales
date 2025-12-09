@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-app: #F3F4F6;
+  --bg-sidebar: #F3F4F6;
+  --bg-card: #FFFFFF;
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --text-active: #000000;
+  
+  /* --- STRICT ALIGNMENT VARIABLES --- */
+  /* 1. The space on the left of the button before the icon starts */
+  --btn-padding-left: 12px;
+  
+  /* 2. The fixed width allocated for every icon container */
+  --icon-box-width: 24px;
+  
+  /* 3. The gap between the icon and the text */
+  --text-gap: 12px;
+  
+  /* 4. CALCULATION: Where does the text start? 
+     12px (pad) + 24px (icon) + 12px (gap) = 48px from left edge. */
+     
+  /* 5. Sub-item Indentation:
+     We want the Sub-Icon to start exactly where the Parent Text starts (48px). */
+  --sub-item-padding-left: 48px; 
+}
+
+* { box-sizing: border-box; }
+
+body, html {
+  margin: 0; padding: 0; height: 100%;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-shell { display: flex; height: 100vh; }
+
+/* --- Sidebar Container --- */
+.sidebar {
+  width: 260px;
+  background-color: var(--bg-sidebar);
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border-right: 1px solid #E5E7EB;
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+  background-color: #fff;
+}
+
+/* --- Header & Avatar --- */
+.sidebar-header-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+  z-index: 5;
+}
+
+.sidebar-tenant-dropdown {
+  background-color: var(--bg-card);
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: flex; align-items: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border: 1px solid rgba(255,255,255,0.8);
+  cursor: pointer;
+}
+
+.tenant-logo { display: flex; align-items: center; margin-right: 10px; }
+.tenant-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.tenant-name { font-weight: 700; font-size: 14px; line-height: 1.2; }
+.tenant-user { font-size: 13px; color: var(--text-secondary); line-height: 1.3; }
+.tenant-caret { color: #9CA3AF; display: flex; margin-left: 4px; }
+
+.sidebar-avatar {
+  position: absolute;
+  right: -8px; top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, #c084fc, #ec4899);
+  border-radius: 50%;
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  border: 2px solid var(--bg-sidebar);
+  z-index: 10;
+}
+
+/* --- Navigation --- */
+.sidebar-nav {
+  display: flex; flex-direction: column;
+  gap: 16px; /* Gap between the top links and the card sections */
+}
+
+.nav-group {
+  display: flex; flex-direction: column;
+  gap: 4px;
+}
+
+/* --- LEVEL 1 ITEMS (Dashboard, Nexus, Intake) --- */
+.sidebar-link {
+  display: flex; align-items: center;
+  width: 100%;
+  height: 40px; /* Fixed height for consistency */
+  padding-left: var(--btn-padding-left);
+  padding-right: 12px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-weight: 500; font-size: 14px;
+  background: transparent; border: none; cursor: pointer; text-align: left;
+  transition: all 0.2s;
+}
+.sidebar-link:hover { color: var(--text-primary); background-color: rgba(0,0,0,0.05); }
+
+/* --- SECTION CARDS (Services, Invoices) --- */
+.sidebar-section-card {
+  background-color: var(--bg-card);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+/* --- LEVEL 1 HEADERS inside Cards --- */
+/* Must exactly match .sidebar-link padding */
+.sidebar-section-header {
+  width: 100%;
+  height: 44px; /* Slightly taller header */
+  display: flex; align-items: center;
+  padding-left: var(--btn-padding-left);
+  padding-right: 12px;
+  background: none; border: none; cursor: pointer;
+  color: var(--text-primary);
+  font-size: 14px; font-weight: 500; text-align: left;
+}
+
+/* --- ICON ALIGNMENT --- */
+/* This ensures the Dashboard icon and Services icon align perfectly */
+.sidebar-link-icon,
+.sidebar-section-icon {
+  width: var(--icon-box-width); /* Force fixed width */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Icon sits on the left of this box */
+  margin-right: var(--text-gap);
+  color: var(--text-secondary);
+}
+
+.sidebar-section-title { flex: 1; }
+.sidebar-section-caret { color: #9CA3AF; display: flex; }
+
+
+/* --- LEVEL 2: TREE SUB-ITEMS --- */
+.sidebar-section-body {
+  padding-bottom: 8px;
+  display: flex; flex-direction: column;
+  gap: 1px;
+}
+
+.sidebar-sub-link {
+  display: flex; align-items: center;
+  width: 100%;
+  height: 36px;
+  background: none; border: none; cursor: pointer; text-align: left;
+  font-size: 14px; color: var(--text-secondary);
+  
+  /* --- INDENTATION MAGIC --- */
+  /* This pushes the content 48px in. 
+     The Sub-Icon will start at 48px, which aligns with Parent Text. */
+  padding-left: var(--sub-item-padding-left);
+  padding-right: 12px;
+}
+
+.sidebar-sub-link:hover { color: var(--text-primary); background-color: #F9FAFB; }
+.sidebar-sub-link.active-sub { color: var(--text-active); font-weight: 700; }
+
+/* Sub-icons are smaller, but we give them a fixed box so text aligns */
+.sidebar-sub-icon {
+  width: 20px; 
+  display: flex; align-items: center; justify-content: center;
+  margin-right: 10px;
+  opacity: 0.8;
+}
+
+/* Rotate the pause icon */
+.rotated-icon svg { transform: rotate(90deg); }
